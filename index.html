@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>License Plate Detection UI</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Link to external CSS file -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1 class="text-center">
+      LICENSE PLATE DETECTION INTERFACE
+    </h1>
+    <h2>Sandip Shah</h2>
+
+    <div id="messageBox" class="message-box" role="alert">
+      <p id="messageText"></p>
+    </div>
+
+    <div class="video-capture-section">
+      <!-- Live Camera Feed Section -->
+      <div class="video-container">
+        <h2 class="text-center">LIVE FEED</h2>
+        <div class="aspect-ratio-box">
+          <video id="videoFeed" autoplay playsinline></video>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4 w-full justify-center">
+          <button id="startCameraButton">
+            ACTIVATE CAMERA
+          </button>
+          <button id="stopCameraButton" disabled
+            class="bg-red-600 hover:bg-red-700 text-white border-red-600 hover:border-red-700">
+            STOP FEED
+          </button>
+        </div>
+        <p class="text-xs text-gray-400 mt-1 text-center">
+          Initiate or terminate camera access for real-time analysis.
+        </p>
+      </div>
+
+      <!-- Captured Image Section -->
+      <div class="captured-image-container">
+        <h2 class="text-center">CAPTURED FRAME</h2>
+        <div class="aspect-ratio-box">
+          <canvas id="capturedCanvas"></canvas>
+        </div>
+        <button id="captureButton" disabled>
+          CAPTURE FRAME
+        </button>
+        <p class="text-xs text-gray-400 mt-1 text-center">
+          Extract a frame for server-side processing.
+        </p>
+      </div>
+    </div>
+
+    <!-- Vehicle Information Output Section -->
+    <div class="info-section mt-6">
+      <h2 class="text-center">VEHICLE DATA LOG</h2>
+      <div id="vehicleInfo" class="info-grid">
+        <!-- NEW: License Plate Number -->
+        <div class="info-item col-span-full"> <!-- Make it span full width for prominence -->
+          <span class="info-label">LICENSE PLATE:</span>
+          <span class="info-value text-2xl" id="licensePlateNumber">N/A</span>
+        </div>
+        <!-- Existing items -->
+        <div class="info-item">
+          <span class="info-label">OWNER NAME:</span>
+          <span class="info-value" id="ownerName">N/A</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">REGISTRATION DATE:</span>
+          <span class="info-value" id="registrationDate">N/A</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">LAST SERVICE:</span>
+          <span class="info-value" id="lastService">N/A</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">VEHICLE AGE:</span>
+          <span class="info-value" id="vehicleAge">N/A</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">FUEL TYPE:</span>
+          <span class="info-value" id="fuelType">N/A</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">REGISTRATION LOCATION:</span>
+          <span class="info-value" id="registrationLocation">N/A</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Link to external JavaScript file -->
+  <script src="script.js"></script>
+</body>
+
+</html>

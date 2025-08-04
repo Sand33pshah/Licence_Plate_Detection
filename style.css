@@ -1,0 +1,274 @@
+/* Custom styles for the Inter font and overall layout */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Share+Tech+Mono&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  /* Align to top for better content flow */
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a0a, #1a1a1a, #0a0a0a);
+  /* Dark, subtle gradient */
+  color: #e0e0e0;
+  /* Light gray for general text */
+  margin: 0;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  /* Prevent horizontal scroll */
+  position: relative;
+}
+
+/* Subtle background grid/circuit pattern */
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(to right, rgba(0, 255, 204, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 255, 204, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0.3;
+  z-index: -1;
+}
+
+.container {
+  max-width: 1200px;
+  width: 100%;
+  background-color: rgba(10, 20, 30, 0.7);
+  /* Dark transparent background */
+  backdrop-filter: blur(10px);
+  /* Frosted glass effect */
+  -webkit-backdrop-filter: blur(10px);
+  /* Safari support */
+  border-radius: 20px;
+  /* More rounded corners */
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  border: 1px solid rgba(0, 255, 204, 0.2);
+  /* Subtle border glow */
+}
+
+h1,
+h2 {
+  font-family: 'Share Tech Mono', monospace;
+  /* Hacking theme font */
+  color: #00ffcc;
+  /* Aqua neon glow */
+  text-shadow: 0 0 8px rgba(0, 255, 204, 0.8), 0 0 15px rgba(0, 255, 204, 0.4);
+  letter-spacing: 1px;
+}
+
+h1 {
+  font-size: 3.5rem;
+  /* Made title bigger */
+}
+
+h2 {
+  font-size: 1.8rem;
+}
+
+
+.video-capture-section {
+  display: flex;
+  flex-direction: column;
+  /* Stack on small screens */
+  gap: 20px;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+
+  /* Two columns on medium screens and up */
+  .video-capture-section {
+    flex-direction: row;
+  }
+}
+
+.video-container,
+.captured-image-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  /* Increased gap */
+  background-color: rgba(15, 30, 45, 0.6);
+  /* Slightly darker transparent */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 25px;
+  border-radius: 15px;
+  border: 1px solid rgba(0, 255, 204, 0.15);
+  position: relative;
+  /* For pseudo-elements */
+  overflow: hidden;
+  /* Hide overflow from scanline */
+}
+
+/* New aspect ratio container */
+.aspect-ratio-box {
+  position: relative;
+  width: 100%;
+  padding-bottom: 75%;
+  /* For 4:3 aspect ratio (height is 75% of width) */
+  /* For 16:9 aspect ratio, use padding-bottom: 56.25%; (9 / 16 * 100) */
+  background-color: #000;
+  /* Black background for the box */
+  border-radius: 10px;
+  border: 2px solid #00ffcc;
+  /* Aqua border */
+  overflow: hidden;
+  /* Ensure content stays within bounds */
+}
+
+.aspect-ratio-box video,
+.aspect-ratio-box canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Ensures video/canvas covers the area without stretching */
+  transform: scaleX(-1);
+  /* Mirror the video */
+}
+
+.captured-image-container .aspect-ratio-box canvas {
+  transform: none;
+  /* Do not mirror captured image */
+}
+
+
+.message-box {
+  background-color: rgba(255, 204, 0, 0.1);
+  /* Yellow transparent */
+  border: 1px solid rgba(255, 204, 0, 0.5);
+  color: #ffcc00;
+  /* Yellow text */
+  text-shadow: 0 0 5px rgba(255, 204, 0, 0.6);
+  padding: 15px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 720px;
+  text-align: center;
+  font-weight: 600;
+  display: none;
+}
+
+.message-box.error {
+  background-color: rgba(255, 0, 0, 0.1);
+  border: 1px solid rgba(255, 0, 0, 0.5);
+  color: #ff0000;
+  text-shadow: 0 0 5px rgba(255, 0, 0, 0.6);
+}
+
+button {
+  font-family: 'Share Tech Mono', monospace;
+  background-color: rgba(0, 255, 204, 0.15);
+  /* Transparent aqua */
+  color: #00ffcc;
+  /* Aqua text */
+  border: 1px solid #00ffcc;
+  /* Aqua border */
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+  text-shadow: 0 0 5px rgba(0, 255, 204, 0.8);
+  letter-spacing: 0.5px;
+}
+
+button:hover {
+  background-color: rgba(0, 255, 204, 0.3);
+  box-shadow: 0 0 15px rgba(0, 255, 204, 0.6), 0 0 25px rgba(0, 255, 204, 0.3);
+  /* Kept hover shadow */
+  transform: translateY(-3px) scale(1.02);
+  cursor: pointer;
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 0 8px rgba(0, 255, 204, 0.5);
+  /* Kept active shadow */
+}
+
+button:disabled {
+  background-color: rgba(50, 50, 50, 0.5);
+  border-color: rgba(100, 100, 100, 0.5);
+  color: #888;
+  box-shadow: none;
+  cursor: not-allowed;
+  text-shadow: none;
+}
+
+.info-section {
+  width: 100%;
+  background-color: rgba(15, 30, 45, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 25px;
+  border-radius: 15px;
+  border: 1px solid rgba(0, 255, 204, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px 30px;
+  /* Increased gap */
+}
+
+@media (min-width: 640px) {
+  .info-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* No specific changes needed for info-item as col-span-full handles layout */
+.info-item {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  background-color: rgba(20, 40, 60, 0.4);
+  /* Darker transparent for items */
+  border-radius: 8px;
+  border: 1px dashed rgba(0, 255, 204, 0.3);
+  /* Dashed border for tech feel */
+}
+
+.info-label {
+  font-family: 'Share Tech Mono', monospace;
+  font-weight: 600;
+  color: #66ffff;
+  /* Light cyan */
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+  text-shadow: 0 0 5px rgba(102, 255, 255, 0.5);
+}
+
+.info-value {
+  font-family: 'Share Tech Mono', monospace;
+  font-weight: 500;
+  color: #00ffcc;
+  /* Aqua */
+  font-size: 1.15rem;
+  text-shadow: 0 0 5px rgba(0, 255, 204, 0.8);
+}
+
+/* Placeholder text on canvas */
+.canvas-placeholder {
+  font-family: 'Share Tech Mono', monospace;
+  color: rgba(0, 255, 204, 0.6);
+  text-shadow: 0 0 5px rgba(0, 255, 204, 0.4);
+}
